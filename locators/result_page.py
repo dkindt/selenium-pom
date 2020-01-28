@@ -1,0 +1,2 @@
+class ResultPageLocators:
+    pass
