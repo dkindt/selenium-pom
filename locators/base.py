@@ -58,10 +58,12 @@ class Strategy(type):
     def __new__(mcs, name, bases, namespace):
         if bases:
             try:
-                validate_strategy(namespace["by"])
+                by = validate_strategy(namespace["by"])
             except KeyError as e:
                 raise NotImplementedError(
                     "Class variable 'by' is required") from e
+            else:
+                namespace["by"] = by
         namespace["__slots__"] = ("by", "locator", )
         return super().__new__(mcs, name, bases, namespace)
 
